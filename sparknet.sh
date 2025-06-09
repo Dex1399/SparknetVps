@@ -176,7 +176,7 @@ function menu_principal() {
     echo "3) 3x-ui"
     echo "4) Arreglar reglas iptables para Zivpn"
     echo "5) Salir"
-    echo "6) 🔄 Actualizar script desde GitHub"
+    echo "6) Actualizar script desde GitHub"
     echo "------------------------------------------------------------"
     read -rp "Selecciona una opción: " opcion
 
