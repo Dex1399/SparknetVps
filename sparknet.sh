@@ -3,10 +3,10 @@
 # === Banner colorido ===
 banner=(
 "  ____                   _    _   _      _    "
-" / ___| _ __   __ _ _ __| | _| \\ | | ___| |_  "
-" \\___ \\| '_ \\ / _\` | '__| |/ /  \\| |/ _ \\ __| "
-"  ___) | |_) | (_| | |  |   <| |\\  |  __/ |_  "
-" |____/| .__/ \\__,_|_|  |_|\\_\\_| \\_|\\___|\\__| "
+" / __| _ __   __ _ _ __| | _| \\ | | ___| |  "
+" \\___ \\| '_ \\ / \` | '_| |/ /  \\| |/ _ \\ __| "
+"  __) | |) | (| | |  |   <| |\\  |  __/ |  "
+" |/| ./ \\,||  ||\\\\| \\|\\|\\_| "
 "       |_|                                    "
 )
 colors=(127 99 93 69 39 33)
@@ -84,7 +84,8 @@ function actualizar_script() {
     if curl --output /tmp/sparknet.sh --silent --fail "$url"; then
       chmod +x /tmp/sparknet.sh
       cp /tmp/sparknet.sh "$ruta_local"
-      echo "✅ Script actualizado correctamente."
+      echo "✅ Script actualizado correctamente. Reiniciando..."
+      exec "$ruta_local"
     else
       echo "❌ No se pudo descargar la versión más reciente desde GitHub."
     fi
@@ -100,7 +101,7 @@ function menu_udp_custom() {
     echo "==============================================="
     echo "         ⚡ Submenú UDP Http-custom             "
     echo "==============================================="
-    echo "1) ⚙️  Instalar UDP Http-custom"
+    echo "1) ⚙  Instalar UDP Http-custom"
     echo "2) 🔙 Volver"
     echo "-----------------------------------------------"
     read -rp "Selecciona una opción: " opcion_hc
@@ -123,8 +124,8 @@ function menu_zivpn() {
     echo "==============================================="
     echo "            🌐 Submenú UDP Zivpn               "
     echo "==============================================="
-    echo "1) ⚙️  Instalar UDP Zivpn"
-    echo "2) 🗑️  Desinstalar UDP Zivpn"
+    echo "1) ⚙  Instalar UDP Zivpn"
+    echo "2) 🗑  Desinstalar UDP Zivpn"
     echo "3) 🔙 Volver"
     echo "-----------------------------------------------"
     read -rp "Selecciona una opción: " opcion_z
@@ -148,8 +149,8 @@ function menu_3xui() {
     echo "==============================================="
     echo "             📡 Submenú 3x-ui                  "
     echo "==============================================="
-    echo "1) ⚙️  Instalar 3x-ui"
-    echo "2) 🗑️  Desinstalar 3x-ui"
+    echo "1) ⚙  Instalar 3x-ui"
+    echo "2) 🗑  Desinstalar 3x-ui"
     echo "3) 🔙 Volver"
     echo "-----------------------------------------------"
     read -rp "Selecciona una opción: " opcion_x
