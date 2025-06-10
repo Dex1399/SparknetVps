@@ -75,6 +75,24 @@ function arreglar_iptables() {
   echo "✅ Reglas iptables aplicadas."
 }
 
+function actualizar_script() {
+  echo "🔄 Comprobando actualización del script..."
+  read -rp "¿Deseas actualizar el script a la última versión disponible en GitHub? (y/n): " respuesta
+  if [[ "$respuesta" == "y" || "$respuesta" == "Y" ]]; then
+    ruta_local="$(realpath "$0")"
+    url="https://raw.githubusercontent.com/Dex1399/SparknetVps/main/sparknet.sh"
+    if curl --output /tmp/sparknet.sh --silent --fail "$url"; then
+      chmod +x /tmp/sparknet.sh
+      cp /tmp/sparknet.sh "$ruta_local"
+      echo "✅ Script actualizado correctamente."
+    else
+      echo "❌ No se pudo descargar la versión más reciente desde GitHub."
+    fi
+  else
+    echo "❎ Actualización cancelada por el usuario."
+  fi
+}
+
 function menu_udp_custom() {
   while true; do
     clear
@@ -158,6 +176,7 @@ function menu_principal() {
     echo "3) 3x-ui"
     echo "4) Arreglar reglas iptables para Zivpn"
     echo "5) Salir"
+    echo "6) 🔄 Actualizar script desde GitHub"
     echo "------------------------------------------------------------"
     read -rp "Selecciona una opción: " opcion
 
@@ -167,6 +186,7 @@ function menu_principal() {
       3) menu_3xui ;;
       4) arreglar_iptables ;;
       5) echo "👋 Saliendo..."; exit 0 ;;
+      6) actualizar_script ;;
       *) echo "❌ Opción inválida. Intenta nuevamente." ;;
     esac
 
