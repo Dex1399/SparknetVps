@@ -8,11 +8,11 @@
   "down": "100 Mbps",
   "down_mbps": 100,
   "disable_udp": false,
-  "obfs": "cIeyhfxr",
+  "obfs": "6GvUtpsk",
   "auth": {
     "mode": "password",
     "config": [
-      "dex:admin"
+      "dex:admin",
     ]
   }
 }
