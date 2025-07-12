@@ -12,7 +12,7 @@
   "auth": {
     "mode": "password",
     "config": [
-      "dex:admin",
+      "dex:admin"
     ]
   }
 }
