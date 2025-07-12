@@ -1,0 +1,18 @@
+{
+  "listen": ":36712",
+  "cert": "/root/UDPMOD/udpmod.server.crt",
+  "key": "/root/UDPMOD/udpmod.server.key",
+  "protocol": "udp",
+  "up": "100 Mbps",
+  "up_mbps": 100,
+  "down": "100 Mbps",
+  "down_mbps": 100,
+  "disable_udp": false,
+  "obfs": "cIeyhfxr",
+  "auth": {
+    "mode": "password",
+    "config": [
+      "dex:admin"
+    ]
+  }
+}
