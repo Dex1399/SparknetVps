@@ -65,6 +65,32 @@ if ! systemctl is-active --quiet udpmod; then
     exit 1
 fi
 
+# =================================================================
+# NUEVAS SECCIONES AGREGADAS
+# =================================================================
+
+# Configurar comando de administración
+echo "Configurando comando de administración..."
+chmod +x /root/UDPMOD/hysteria_manager.sh
+ln -sf /root/UDPMOD/hysteria_manager.sh /usr/local/bin/hysteria-mgr
+
+# Crear alias permanente para todos los usuarios
+for user_home in /home/* /root; do
+    if [ -d "$user_home" ] && [ -f "$user_home/.bashrc" ]; then
+        if ! grep -q "alias hysteria-mgr" "$user_home/.bashrc"; then
+            echo "alias hysteria-mgr='sudo /usr/local/bin/hysteria-mgr'" >> "$user_home/.bashrc"
+        fi
+    fi
+done
+
+# Actualizar PATH inmediatamente
+echo 'export PATH=$PATH:/usr/local/bin' >> /etc/profile
+source /etc/profile > /dev/null 2>&1
+
+# =================================================================
+# FIN DE NUEVAS SECCIONES
+# =================================================================
+
 # Mostrar información
 echo "obfs: ${OBFS}" > data
 echo "port: 36712" >> data
@@ -75,4 +101,18 @@ echo "--------------------------------"
 
 # Limpieza
 rm -f udpmod.server.csr udpmod.ca.srl 2>/dev/null
-echo "Instalación completada correctamente"
+
+# Mensaje final con instrucciones
+echo -e "\n\n================================================================"
+echo -e "INSTALACIÓN COMPLETADA CORRECTAMENTE"
+echo -e "================================================================\n"
+echo -e "Para gestionar usuarios, utiliza el siguiente comando:"
+echo -e "   ${YELLOW}hysteria-mgr${NC}"
+echo -e ""
+echo -e "Este comando estará disponible:"
+echo -e "- En nuevas terminales inmediatamente"
+echo -e "- En esta terminal después de ejecutar:"
+echo -e "      ${YELLOW}source /etc/profile${NC}"
+echo -e "================================================================"
+echo -e "Nota: Si no funciona inmediatamente, cierra y abre una nueva terminal"
+echo -e "================================================================\n"
